@@ -21,10 +21,6 @@ class FunctionApp
         if (class_exists('Haruair\AzureFunctions\Runner')) {
             fwrite(STDOUT, '2 exists' . PHP_EOL);
         }
-        if (class_exists('Runner')) {
-            fwrite(STDOUT, '3 exists' . PHP_EOL);
-        }
-
 
         if (class_exists(FunctionApp::class)) {
             fwrite(STDOUT, '1 exists' . PHP_EOL);
@@ -33,9 +29,16 @@ class FunctionApp
         if (class_exists(Runner::class)) {
             fwrite(STDOUT, '4 exists' . PHP_EOL);
         }
+
         if (class_exists(Haruair\AzureFunctions\Runner::class)) {
             fwrite(STDOUT, '5 exists' . PHP_EOL);
         }
-        $runner = new Runner($this->basePath);
+
+        try {
+            $runner = new Runner($this->basePath);
+        } catch (\Exception $e) {
+            fwrite(STDOUT, 'Exception aaa' . PHP_EOL);
+        }
+        
     }
 }
