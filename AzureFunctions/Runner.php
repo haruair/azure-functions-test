@@ -20,7 +20,7 @@ class Runner
         }
         fwrite(STDOUT, 'basePath is ' . $basePath.PHP_EOL);
         try {
-            $runner = new Self($basePath);
+            $runner = new Runner($basePath);
         } catch(\Exception $e) {
             fwrite(STDOUT, print_r($e, true) . PHP_EOL);
         }
