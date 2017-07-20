@@ -3,6 +3,8 @@
 namespace Haruair\AzureFunctions;
 
 use DI\ContainerBuilder;
+use Psr\Http\Message\RequestInterface;
+
 use Exception;
 
 class Runner
@@ -52,7 +54,10 @@ class Runner
             fwrite(STDOUT, print_r($e, true));
         }
         $result = ob_get_clean();
-        file_put_contents(getenv('return'), $result);
+
+        if (!empty($result)) {
+            file_put_contents(getenv('return'), $result);
+        }
     }
 
     public function getContainer()
@@ -63,6 +68,8 @@ class Runner
 
         $builder = new ContainerBuilder();
         $container = $builder->build();
+
+        $container->set(RequestInterface::class, \DI\object(Request::class));
 
         $this->container = $container;
         return $container;
