@@ -75,7 +75,15 @@ class Runner
         $builder = new ContainerBuilder();
         fwrite(STDOUT, 'Before container created');
         $container = $builder->build();
-        $container->set(ServerRequestInterface::class, ServerRequest::fromAzureFunctionsGlobals());
+
+        $container->set(
+            ServerRequestInterface::class,
+            \DI\factory([
+                ServerRequest::class,
+                'fromAzureFunctionsGlobals'
+            ])
+        );
+
         fwrite(STDOUT, 'After container created');
         $this->container = $container;
         return $container;
