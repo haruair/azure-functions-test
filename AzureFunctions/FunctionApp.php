@@ -16,9 +16,15 @@ class FunctionApp
         if (is_null($basePath) && php_sapi_name() == 'cli')
         {
             global $argv;
-            if (isset($argv[1])) {
+            if (isset($argv[1]))
+            {
                 $basePath = $argv[1];
             }
+        }
+
+        if (!file_exists($basePath))
+        {
+            throw new \Exception('File does not exist. ' . $basePath);
         }
 
         $this->runner = new Runner($basePath);
