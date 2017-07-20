@@ -11,7 +11,9 @@ array_map(function($row) {
     $p = strpos($row, $split);
     $key = substr($row, 0, $p);
     $value = substr($row, $p + count($split));
-    $_ENV[$key] = $value;
+    if (!empty($key)) {
+        $_ENV[$key] = $value;
+    }
 }, $data);
 
 print_r($_ENV);
