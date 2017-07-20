@@ -16,4 +16,4 @@ $result = json_encode([
     'req' => file_get_contents(getenv('req')),
 ]);
 
-file_put_contents(getenv('return'), json_encode($result));
+file_put_contents(getenv('return'), json_encode($result, JSON_PRETTY_PRINT));
