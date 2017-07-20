@@ -1,0 +1,21 @@
+{
+  "disabled": false,
+  "bindings": [
+    {
+      "authLevel": "function",
+      "name": "req",
+      "type": "httpTrigger",
+      "direction": "in"
+    },
+    {
+      "name": "return1",
+      "type": "http",
+      "direction": "out"
+    },
+    {
+      "name": "return2",
+      "type": "http",
+      "direction": "out"
+    }
+  ]
+}
