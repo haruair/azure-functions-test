@@ -39,6 +39,7 @@ class Runner
         list($className, $methodName) = explode('::', $this->getEntryPoint());
 
         $container = $this->getContainer();
+        ob_start();
         $instance = $container->get($className);
 
         try
@@ -50,6 +51,8 @@ class Runner
             // log
             fwrite(STDOUT, print_r($e, true));
         }
+        $result = ob_get_clean();
+        file_put_contents(getenv('return'), $result);
     }
 
     public function getContainer()
