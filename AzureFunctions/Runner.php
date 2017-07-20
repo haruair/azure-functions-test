@@ -4,6 +4,8 @@ namespace Haruair\AzureFunctions;
 
 use DI\ContainerBuilder;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Psr7\Response;
 
 use Exception;
 
@@ -20,9 +22,9 @@ class Runner
     public function execute()
     {
         if (is_null($this->getEntryPoint())) {
-            $this->executeFile();
+            return $this->executeFile();
         } else {
-            $this->executeByEntryPoint();
+            return $this->executeByEntryPoint();
         }
     }
 
@@ -49,25 +51,27 @@ class Runner
 
         try
         {
-            $returnValue = $container->call([$instance, $methodName]);
+            $response = $container->call([$instance, $methodName]);
         }
         catch(Exception $e)
         {
             // log
             fwrite(STDOUT, print_r($e, true));
         }
+
         $output = ob_get_clean();
+        if ($response instanceof ResponseInterface === false) {
+            $responseBody = is_string($response) ? $response : \json_encode($response);
+            $response = new Response(200, [], $responseBody);
+        }
 
-        if (!empty($returnValue)) {
-            if (!is_string($returnValue)) {
-                $returnValue = \json_encode($returnValue);
-            }
-
+        if (!is_null($response)) {
             $outs = $this->getOutNames();
             foreach($outs as $out) {
-                file_put_contents(getenv($out), $returnValue);
+                file_put_contents(getenv($out), $response->getBody());
             }
         }
+        return $response;
     }
 
     public function getContainer()

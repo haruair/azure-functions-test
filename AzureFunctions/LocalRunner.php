@@ -1,7 +1,7 @@
 <?php
 namespace Haruair\AzureFunctions;
 
-use Guzzle\Psr7\ServerRequest;
+use GuzzleHttp\Psr7\ServerRequest;
 use Psr\Http\Message\ServerRequestInterface;
 
 class LocalRunner extends Runner

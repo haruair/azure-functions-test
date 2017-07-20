@@ -45,11 +45,12 @@ class LocalServer
             putenv('$return='.$metaData['uri']);
 
             $route = $request->getUri()->getPath();
-            
+
             if (isset($routes[$route])) {
                 $runner = new LocalRunner($routes[$route]);
                 $runner->setServerRequest($request);
-                $runner->execute();
+                $response = $runner->execute();
+                return $response;
             } else {
                 return new React\Http\Response(
                     404,
