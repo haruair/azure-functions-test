@@ -12,6 +12,7 @@ class Runner
 
     public function __construct(string $basePath = null)
     {
+        fwrite(STDOUT, 'hit herer1');
         $this->basePath = $basePath;
         list($className, $methodName) = explode('::', $this->getEntryPoint());
 
