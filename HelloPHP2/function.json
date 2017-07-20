@@ -1,7 +1,5 @@
 {
   "scriptFile": "..\\run.php",
   "entryPoint": "Haruair\\HelloWorld\\HelloPHP2::Run",
-  "bindings": [
-  ],
   "disabled": false
 }
