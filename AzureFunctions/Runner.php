@@ -59,7 +59,11 @@ class Runner
             if (!is_string($returnValue)) {
                 $returnValue = \json_encode($returnValue);
             }
-            file_put_contents(getenv('return'), $returnValue);
+
+            $outs = $this->getOutNames();
+            foreach($outs as $out) {
+                file_put_contents(getenv($out), $returnValue);
+            }
         }
     }
 
@@ -82,6 +86,18 @@ class Runner
     {
         $config = $this->getConfig();
         return isset($config->entryPoint) ? $config->entryPoint : null;
+    }
+
+    public function getOutNames()
+    {
+        $config = $this->getConfig();
+        $bindings = isset($config->bindings) ? $config->bindings : [];
+        $filtered = array_filter(array_map(function($binding) {
+            return isset($binding->name) ? $binding->name : null;
+        }, array_filter($bindings, function($binding) {
+            return isset($binding->direction) && $binding->direction === 'out' && isset($binding->type) && $binding->type === 'http';
+        })));
+        return $filtered;
     }
 
     public function getConfig()
