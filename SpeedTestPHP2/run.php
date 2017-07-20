@@ -16,4 +16,5 @@ array_map(function($row) {
     }
 }, $data);
 
+print_r($_SERVER);
 print_r($_ENV);
