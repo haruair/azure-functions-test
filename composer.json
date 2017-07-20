@@ -1,0 +1,10 @@
+{
+    "name": "haruair/azure-functions-test",
+    "authors": [
+        {
+            "name": "Edward Kim",
+            "email": "onward.edkim@gmail.com"
+        }
+    ],
+    "require": {}
+}
