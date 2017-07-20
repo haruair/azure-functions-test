@@ -1,0 +1,2 @@
+<?php
+fwrite(STDOUT, 'Hello');
