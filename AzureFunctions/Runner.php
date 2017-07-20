@@ -8,6 +8,7 @@ use Exception;
 class Runner
 {
     protected $basePath;
+    protected $config;
     protected $container = null;
 
     public function __construct($basePath = null)
@@ -23,7 +24,14 @@ class Runner
 
     public function executeFile()
     {
-        require_once($this->basePath . DIRECTORY_SEPARATOR . 'run.php');
+        $config = $this->getConfig();
+        $filePath = 'run.php';
+
+        if (isset($config->entryPoint)) {
+            $filePath = str_replace('\\', DIRECTORY_SEPARATOR, $config->entryPoint);
+        }
+
+        require_once($this->basePath . DIRECTORY_SEPARATOR . $filePath);
     }
 
     public function executeByEntryPoint()
@@ -59,7 +67,18 @@ class Runner
 
     public function getEntryPoint()
     {
-        $config = json_decode(file_get_contents($this->basePath . DIRECTORY_SEPARATOR . 'function.json'));
+        $config = $this->getConfig();
         return isset($config->entryPoint) ? $config->entryPoint : null;
+    }
+
+    public function getConfig()
+    {
+        if (!is_null($this->config))
+        {
+            return $this->config;
+        }
+
+        $this->config = json_decode(file_get_contents($this->basePath . DIRECTORY_SEPARATOR . 'function.json'));
+        return $this->config;
     }
 }
