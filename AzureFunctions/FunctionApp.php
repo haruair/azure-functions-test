@@ -13,6 +13,6 @@ class FunctionApp
             $basePath = @$_SERVER['EXECUTION_CONTEXT_FUNCTIONDIRECTORY'];
         }
         fwrite(STDOUT, 'hit here3');
-        return new Runner($basePath);
+        $runner = new Runner($basePath);
     }
 }
