@@ -5,9 +5,11 @@ $info = ob_get_clean();
 $data = substr($info, strpos($info, "Variable => Value\n"));
 $data = explode("\n", $data);
 
-print_r($data);
+array_map(function($row) {
+    $p = strpos($row, ' => ');
+    $key = substr($row, 0, $p);
+    $value = substr($row, $p + 3);
+    $_ENV[$key] = $value;
+}, $data);
 
-$data = substr($info, strpos($info, "Variable => Value\r\n"));
-$data = explode("\r\n", $data);
-
-print_r($data);
+print_r($_ENV);
