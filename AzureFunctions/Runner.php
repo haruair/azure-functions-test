@@ -46,17 +46,20 @@ class Runner
 
         try
         {
-            $container->call([$instance, $methodName]);
+            $returnValue = $container->call([$instance, $methodName]);
         }
         catch(Exception $e)
         {
             // log
             fwrite(STDOUT, print_r($e, true));
         }
-        $result = ob_get_clean();
+        $output = ob_get_clean();
 
-        if (!empty($result)) {
-            file_put_contents(getenv('return'), $result);
+        if (!empty($returnValue)) {
+            if (!is_string($returnValue)) {
+                $returnValue = \json_encode($returnValue);
+            }
+            file_put_contents(getenv('return'), $returnValue);
         }
     }
 
