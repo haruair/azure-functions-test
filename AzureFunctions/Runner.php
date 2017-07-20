@@ -11,7 +11,6 @@ class Runner
 {
     protected $basePath;
     protected $config;
-    protected $container = null;
 
     public function __construct($basePath = null)
     {
@@ -69,10 +68,6 @@ class Runner
 
     public function getContainer()
     {
-        if (!is_null($this->container)) {
-            return $this->container;
-        }
-
         $builder = new ContainerBuilder();
         $container = $builder->build();
 

@@ -8,18 +8,15 @@ class FunctionApp
 
     public function __construct($basePath = null)
     {
+        if (php_sapi_name() == 'cli')
+        {
+            $this->runner = new LocalRunner(__DIR__  . '/..');
+            return $this;
+        }
+
         if (is_null($basePath))
         {
             $basePath = @$_SERVER['EXECUTION_CONTEXT_FUNCTIONDIRECTORY'];
-        }
-
-        if (is_null($basePath) && php_sapi_name() == 'cli')
-        {
-            global $argv;
-            if (isset($argv[1]))
-            {
-                $basePath = $argv[1];
-            }
         }
 
         if (!file_exists($basePath))
