@@ -18,15 +18,16 @@ class FunctionApp
     {
         fwrite(STDOUT, 'lets execute' . PHP_EOL);
 
-        if (class_exists(FunctionApp::class)) {
-            fwrite(STDOUT, '1 exists' . PHP_EOL);
-        }
-
         if (class_exists('Haruair\AzureFunctions\Runner')) {
             fwrite(STDOUT, '2 exists' . PHP_EOL);
         }
         if (class_exists('Runner')) {
             fwrite(STDOUT, '3 exists' . PHP_EOL);
+        }
+
+
+        if (class_exists(FunctionApp::class)) {
+            fwrite(STDOUT, '1 exists' . PHP_EOL);
         }
 
         if (class_exists(Runner::class)) {
