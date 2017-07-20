@@ -6,7 +6,7 @@ class Runner
 {
     protected $basePath;
 
-    protected function __construct(string $basePath = null)
+    public function __construct(string $basePath = null)
     {
 
         fwrite(STDOUT, 'call Run'.PHP_EOL);
