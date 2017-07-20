@@ -22,7 +22,7 @@ class ServerRequest extends BaseServerRequest
         $method = isset($_SERVER['REQ_METHOD']) ? $_SERVER['REQ_METHOD'] : 'GET';
         $headers = self::getHeadersFromAzureFunctionsGlobals();
         $uri = self::getUriFromGlobals();
-        $body = new LazyOpenStream(getenv('req'), 'r+');
+        $body = file_get_contents(getenv('req'));
         $queryParams = self::getQueryParamsFromAzureFunctionsGlobals();
         $protocol = isset($_SERVER['SERVER_PROTOCOL']) ? str_replace('HTTP/', '', $_SERVER['SERVER_PROTOCOL']) : '1.1';
         $serverRequest = new ServerRequest($method, $uri, $headers, $body, $protocol, $_SERVER);
