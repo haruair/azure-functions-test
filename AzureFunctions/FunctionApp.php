@@ -35,10 +35,11 @@ class FunctionApp
         }
 
         try {
-            $runner = new Runner($this->basePath);
+            // $runner = new Runner($this->basePath);
+            new HelloWorld();
         } catch (\Exception $e) {
             fwrite(STDOUT, 'Exception aaa' . PHP_EOL);
         }
-        
+        fwrite(STDOUT, 'Done' . PHP_EOL);
     }
 }
