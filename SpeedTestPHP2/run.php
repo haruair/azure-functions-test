@@ -18,3 +18,4 @@ array_map(function($row) {
 
 print_r($_SERVER);
 print_r($_ENV);
+echo php_sapi_name();
