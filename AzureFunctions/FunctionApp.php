@@ -26,12 +26,12 @@ class FunctionApp
             fwrite(STDOUT, '1 exists' . PHP_EOL);
         }
 
-        if (class_exists(Runner::class)) {
-            fwrite(STDOUT, '4 exists' . PHP_EOL);
+        if (class_exists(\Haruair\AzureFunctions\Runner::class)) {
+            fwrite(STDOUT, '5 exists' . PHP_EOL);
         }
 
-        if (class_exists(Haruair\AzureFunctions\Runner::class)) {
-            fwrite(STDOUT, '5 exists' . PHP_EOL);
+        if (class_exists(Runner::class)) {
+            fwrite(STDOUT, '4 exists' . PHP_EOL);
         }
 
         try {
