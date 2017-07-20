@@ -25,7 +25,7 @@ class Request implements RequestInterface
 
     public function getUri()
     {
-
+        return getenv('REQ_ORIGINAL_URL');
     }
 
     public function withUri(UriInterface $uri, $preserveHost = false)
@@ -55,17 +55,17 @@ class Request implements RequestInterface
 
     public function hasHeader($name)
     {
-
+        return $this->getHeader($name) === false;
     }
 
     public function getHeader($name)
     {
-
+        return getenv('REQ_HEADERS_' . $name);
     }
 
     public function getHeaderLine($name)
     {
-
+        return $name . ': ' . $this->getHeader($name);
     }
 
     public function withHeader($name, $value)
@@ -85,7 +85,7 @@ class Request implements RequestInterface
 
     public function getBody()
     {
-
+        return file_get_contents(getenv('req'));
     }
 
     public function withBody(StreamInterface $body)
