@@ -2,13 +2,15 @@
 ob_start();
 phpinfo(INFO_ENVIRONMENT);
 $info = ob_get_clean();
-$data = substr($info, strpos($info, "Variable => Value\n"));
+$split = "Variable => Value\n";
+$data = substr($info, strpos($info, $split) + count($split));
 $data = explode("\n", $data);
 
 array_map(function($row) {
-    $p = strpos($row, ' => ');
+    $split = ' => ';
+    $p = strpos($row, $split);
     $key = substr($row, 0, $p);
-    $value = substr($row, $p + 3);
+    $value = substr($row, $p + count($split));
     $_ENV[$key] = $value;
 }, $data);
 
