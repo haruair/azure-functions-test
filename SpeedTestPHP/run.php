@@ -7,8 +7,6 @@ $data = json_decode(file_get_contents('php://input'));
 $result = json_encode([
     'okay' => true,
     'data' => $data,
-    'env' => $_ENV,
-    'server' => $_SERVER,
     'req' => file_get_contents(getenv('req')),
 ]);
 
