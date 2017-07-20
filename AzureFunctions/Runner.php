@@ -12,14 +12,8 @@ class Runner
 
     public function __construct($basePath = null)
     {
-        fwrite(STDOUT, 'hit herer1');
         $this->basePath = $basePath;
         list($className, $methodName) = explode('::', $this->getEntryPoint());
-
-        fwrite(STDOUT, $className);
-        fwrite(STDOUT, $methodName);
-
-        fwrite(STDOUT, 'hit here');
 
         $container = $this->getContainer();
         $instance = $container->get($className);
