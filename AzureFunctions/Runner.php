@@ -15,7 +15,10 @@ class Runner
     public function __construct($basePath = null)
     {
         $this->basePath = $basePath;
+    }
 
+    public function execute()
+    {
         if (is_null($this->getEntryPoint())) {
             $this->executeFile();
         } else {
@@ -72,15 +75,6 @@ class Runner
         $builder = new ContainerBuilder();
         $container = $builder->build();
 
-        $container->set(
-            ServerRequestInterface::class,
-            \DI\factory([
-                ServerRequest::class,
-                'fromAzureFunctionsGlobals'
-            ])
-        );
-
-        $this->container = $container;
         return $container;
     }
 

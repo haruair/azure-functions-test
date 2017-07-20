@@ -15,8 +15,7 @@ class FunctionApp
 
         if (is_null($basePath) && php_sapi_name() == 'cli')
         {
-            $this->runner = new LocalRunner(__DIR__  . '/..');
-            return $this;
+            return new LocalServer(__DIR__  . '/..');
         }
 
         if (!file_exists($basePath))
@@ -24,6 +23,7 @@ class FunctionApp
             throw new \Exception('File does not exist. ' . $basePath);
         }
 
-        $this->runner = new Runner($basePath);
+        $this->runner = new WebJobRunner($basePath);
+        $this->runner->execute();
     }
 }
