@@ -1,5 +1,5 @@
 {
-  "scriptFile": "..\\az",
+  "scriptFile": "..\\run.php",
   "entryPoint": "Haruair\\HelloWorld\\QueueTriggerPHP1::Run",
   "bindings": [
     {
