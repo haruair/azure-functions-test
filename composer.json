@@ -8,7 +8,8 @@
     ],
     "autoload": {
 	    "psr-4": {
-		    "Haruair\\HelloWorld\\": "src"
+            "Haruair\\HelloWorld\\": "src",
+            "Haruair\\AzureFunctions\\": "AzureFunctions"
 	    }
     },
     "require": {}
