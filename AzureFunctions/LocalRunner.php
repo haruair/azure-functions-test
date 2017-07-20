@@ -10,6 +10,8 @@ class LocalRunner
     public function __construct($basePath)
     {
         $loop = React\EventLoop\Factory::create();
+
+        $basePath = realpath($basePath);
         $functionConfigs = glob($basePath . '/*/function.json');
 
         $routes = [];
@@ -31,6 +33,8 @@ class LocalRunner
             }
 
             $routes['/'.$route] = $functionPath;
+            $printFuncPath = str_replace($basePath, '.', $functionPath);
+            echo "Loaded /{$route} ({$printFuncPath})" . PHP_EOL;
         }
 
         $server = new React\Http\Server(function (Psr\Http\Message\ServerRequestInterface $request) use ($routes) {
