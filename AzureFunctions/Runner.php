@@ -13,6 +13,21 @@ class Runner
     public function __construct($basePath = null)
     {
         $this->basePath = $basePath;
+
+        if (is_null($this->getEntryPoint())) {
+            $this->executeFile();
+        } else {
+            $this->executeByEntryPoint();
+        }
+    }
+
+    public function executeFile()
+    {
+        require_once($this->basePath . DIRECTORY_SEPARATOR . 'run.php');
+    }
+
+    public function executeByEntryPoint()
+    {
         list($className, $methodName) = explode('::', $this->getEntryPoint());
 
         $container = $this->getContainer();
@@ -45,6 +60,6 @@ class Runner
     public function getEntryPoint()
     {
         $config = json_decode(file_get_contents($this->basePath . DIRECTORY_SEPARATOR . 'function.json'));
-        return $config->entryPoint;
+        return isset($config->entryPoint) ? $config->entryPoint : null;
     }
 }
