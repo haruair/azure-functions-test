@@ -19,30 +19,13 @@ class ServerRequest extends BaseServerRequest
      */
     public static function fromAzureFunctionsGlobals()
     {
-        $i = 0;
-        \fwrite(STDOUT, "PICK".$i++.PHP_EOL);
-
         $method = isset($_SERVER['REQ_METHOD']) ? $_SERVER['REQ_METHOD'] : 'GET';
-
-        \fwrite(STDOUT, "PICK".$i++.PHP_EOL);
         $headers = self::getHeadersFromAzureFunctionsGlobals();
-
-        \fwrite(STDOUT, "PICK".$i++.PHP_EOL);
         $uri = self::getUriFromGlobals();
-
-        \fwrite(STDOUT, "PICK".$i++.PHP_EOL);
         $body = new LazyOpenStream(getenv('req'), 'r+');
-
-        \fwrite(STDOUT, "PICK".$i++.PHP_EOL);
         $queryParams = self::getQueryParamsFromAzureFunctionsGlobals();
-
-        \fwrite(STDOUT, "PICK".$i++.PHP_EOL);
         $protocol = isset($_SERVER['SERVER_PROTOCOL']) ? str_replace('HTTP/', '', $_SERVER['SERVER_PROTOCOL']) : '1.1';
-
-        \fwrite(STDOUT, "PICK".$i++.PHP_EOL);
         $serverRequest = new ServerRequest($method, $uri, $headers, $body, $protocol, $_SERVER);
-
-        \fwrite(STDOUT, "PICK".$i++.PHP_EOL);
         return $serverRequest
             ->withCookieParams($_COOKIE)
             ->withQueryParams($queryParams)

@@ -40,12 +40,16 @@ class Runner
         list($className, $methodName) = explode('::', $this->getEntryPoint());
 
         $container = $this->getContainer();
-        ob_start();
+        // ob_start();
+        fwrite(STDOUT, 'Before create instance');
         $instance = $container->get($className);
+        fwrite(STDOUT, 'After create instance');
 
         try
         {
+            fwrite(STDOUT, 'Before call');
             $returnValue = $container->call([$instance, $methodName]);
+            fwrite(STDOUT, 'After call');
         }
         catch(Exception $e)
         {
@@ -69,10 +73,10 @@ class Runner
     public function getContainer()
     {
         $builder = new ContainerBuilder();
+        fwrite(STDOUT, 'Before container created');
         $container = $builder->build();
-
         $container->set(ServerRequestInterface::class, ServerRequest::fromAzureFunctionsGlobals());
-
+        fwrite(STDOUT, 'After container created');
         $this->container = $container;
         return $container;
     }
