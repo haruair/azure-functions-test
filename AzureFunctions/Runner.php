@@ -19,7 +19,12 @@ class Runner
             $basePath = __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'HelloPHP2';
         }
         fwrite(STDOUT, 'basePath is ' . $basePath.PHP_EOL);
-        $runner = new Self($basePath);
+        try {
+            $runner = new Self($basePath);
+        } catch(\Exception $e) {
+            fwrite(STDOUT, print_r($e, true) . PHP_EOL);
+        }
+        
     }
 
     protected function __construct(string $basePath)
