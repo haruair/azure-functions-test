@@ -2,13 +2,6 @@
   "scriptFile": "..\\run.php",
   "entryPoint": "Haruair\\HelloWorld\\HelloPHP2::Run",
   "bindings": [
-    {
-      "name": "inputMessage",
-      "type": "queueTrigger",
-      "direction": "in",
-      "queueName": "samples-php",
-      "connection": "AzureWebJobsDashboard"
-    }
   ],
   "disabled": false
 }
