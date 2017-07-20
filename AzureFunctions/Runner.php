@@ -3,7 +3,7 @@
 namespace Haruair\AzureFunctions;
 
 use DI\ContainerBuilder;
-use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 use Exception;
 
@@ -76,7 +76,7 @@ class Runner
         $builder = new ContainerBuilder();
         $container = $builder->build();
 
-        $container->set(RequestInterface::class, \DI\object(Request::class));
+        $container->set(ServerRequestInterface::class, \DI\object(Request::class));
 
         $this->container = $container;
         return $container;
