@@ -3,7 +3,13 @@
   "entryPoint": "Haruair\\HelloWorld\\HelloPHP2::Run",
   "bindings": [
     {
-      "name": "res",
+      "authLevel": "function",
+      "name": "req",
+      "type": "httpTrigger",
+      "direction": "in"
+    },
+    {
+      "name": "$return",
       "type": "http",
       "direction": "out"
     }
