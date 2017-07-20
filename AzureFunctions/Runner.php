@@ -6,8 +6,12 @@ class Runner
 {
     protected $basePath;
 
-    public static function Run(string $basePath)
+    public static function Run(string $basePath = null)
     {
+        if (is_null($basePath))
+        {
+            $basePath = $_SERVER['EXECUTION_CONTEXT_FUNCTIONDIRECTORY'];
+        }
         $runner = new Self($basePath);
     }
 

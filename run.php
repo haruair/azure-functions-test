@@ -1,4 +1,3 @@
 <?php
-fwrite(STDOUT, "run.php on root");
-fwrite(STDOUT, print_r($_SERVER, true));
-fwrite(STDOUT, print_r($_ENV, true));
+require_once(__DIR__.'/bootstrap.php');
+Haruair\AzureFunctions\Runner::Run();
