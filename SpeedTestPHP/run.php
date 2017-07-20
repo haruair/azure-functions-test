@@ -9,4 +9,7 @@ $result = json_encode([
     'data' => $data,
     'env' => $_ENV,
     'server' => $_SERVER,
+    'req' => file_get_contents(getenv('req')),
 ]);
+
+file_put_contents(getenv('return'), json_encode($result));

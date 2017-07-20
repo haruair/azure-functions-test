@@ -8,7 +8,7 @@
       "direction": "in"
     },
     {
-      "name": "result",
+      "name": "return",
       "type": "http",
       "direction": "out"
     }
