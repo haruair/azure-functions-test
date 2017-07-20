@@ -26,7 +26,7 @@ class Runner
 
     public function getEntryPoint()
     {
-        $config = json_decode(file_get_contents($this->basePath.'/function.json'));
+        $config = json_decode(file_get_contents($this->basePath . DIRECTORY_SEPARATOR . 'function.json'));
         fwrite(STDOUT, 'get Entry Point');
         return $config->entryPoint;
     }
