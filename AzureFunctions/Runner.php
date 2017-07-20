@@ -40,16 +40,13 @@ class Runner
         list($className, $methodName) = explode('::', $this->getEntryPoint());
 
         $container = $this->getContainer();
-        // ob_start();
-        fwrite(STDOUT, 'Before create instance'.PHP_EOL);
+
+        ob_start();
         $instance = $container->get($className);
-        fwrite(STDOUT, 'After create instance'.PHP_EOL);
 
         try
         {
-            fwrite(STDOUT, 'Before call'.PHP_EOL);
             $returnValue = $container->call([$instance, $methodName]);
-            fwrite(STDOUT, 'After call'.PHP_EOL);
         }
         catch(Exception $e)
         {
@@ -73,7 +70,6 @@ class Runner
     public function getContainer()
     {
         $builder = new ContainerBuilder();
-        fwrite(STDOUT, 'Before container created'.PHP_EOL);
         $container = $builder->build();
 
         $container->set(
@@ -84,7 +80,6 @@ class Runner
             ])
         );
 
-        fwrite(STDOUT, 'After container created'.PHP_EOL);
         $this->container = $container;
         return $container;
     }
