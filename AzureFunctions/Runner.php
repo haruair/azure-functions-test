@@ -27,8 +27,8 @@ class Runner
         $config = $this->getConfig();
         $filePath = 'run.php';
 
-        if (isset($config->entryPoint)) {
-            $filePath = str_replace('\\', DIRECTORY_SEPARATOR, $config->entryPoint);
+        if (isset($config->scriptFile)) {
+            $filePath = str_replace('\\', DIRECTORY_SEPARATOR, $config->scriptFile);
         }
 
         require_once($this->basePath . DIRECTORY_SEPARATOR . $filePath);
