@@ -4,8 +4,6 @@ namespace Haruair\AzureFunctions;
 
 class Runner
 {
-    protected $basePath;
-
     public static function Run(string $basePath = null)
     {
         fwrite(STDOUT, 'call Run'.PHP_EOL);
@@ -20,13 +18,18 @@ class Runner
         }
         fwrite(STDOUT, 'basePath is ' . $basePath.PHP_EOL);
         try {
-            $runner = new Runner($basePath);
+            $runner = new InternalRunner($basePath);
         } catch(\Exception $e) {
             fwrite(STDOUT, print_r($e, true) . PHP_EOL);
         }
         
     }
+}
 
+class InternalRunner {
+
+    protected $basePath;
+    
     protected function __construct(string $basePath)
     {
         $this->basePath = $basePath;
