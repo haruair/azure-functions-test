@@ -6,5 +6,10 @@
             "email": "onward.edkim@gmail.com"
         }
     ],
+    "autoload": {
+	    "psr-4": {
+		    "Haruair\\HelloWorld\\": "src"
+	    }
+    },
     "require": {}
 }

@@ -1,0 +1,13 @@
+{
+  "entryPoint": "Haruair\\HelloWorld::Run",
+  "bindings": [
+    {
+      "name": "inputMessage",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "samples-php",
+      "connection": "AzureWebJobsDashboard"
+    }
+  ],
+  "disabled": false
+}
