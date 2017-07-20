@@ -9,10 +9,11 @@ class HelloPHP2
     public function run(RequestInterface $request)
     {
         fwrite(STDOUT, 'Hit the server');
+        $data = json_decode($request->getBody());
 
         return [
             'okay' => true,
-            'data' => $request->getBody(),
+            'data' => $data,
         ];
     }
 }
