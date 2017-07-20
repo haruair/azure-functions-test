@@ -5,7 +5,7 @@ namespace Haruair\AzureFunctions;
 class FunctionApp
 {
     protected $basePath;
-    public function __construct(string $basePath = null)
+    public function __construct($basePath = null)
     {
         if (is_null($basePath))
         {

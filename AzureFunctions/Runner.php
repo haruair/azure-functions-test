@@ -10,7 +10,7 @@ class Runner
     protected $basePath;
     protected $container = null;
 
-    public function __construct(string $basePath = null)
+    public function __construct($basePath = null)
     {
         fwrite(STDOUT, 'hit herer1');
         $this->basePath = $basePath;
