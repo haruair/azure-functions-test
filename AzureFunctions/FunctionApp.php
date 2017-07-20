@@ -2,6 +2,8 @@
 
 namespace Haruair\AzureFunctions;
 
+use Haruair\AzureFunctions\Runner;
+
 class FunctionApp
 {
     protected $basePath;
