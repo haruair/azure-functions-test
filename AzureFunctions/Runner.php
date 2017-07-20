@@ -11,7 +11,12 @@ class Runner
         fwrite(STDOUT, 'call Run');
         if (is_null($basePath))
         {
-            $basePath = $_SERVER['EXECUTION_CONTEXT_FUNCTIONDIRECTORY'];
+            $basePath = @$_SERVER['EXECUTION_CONTEXT_FUNCTIONDIRECTORY'];
+        }
+
+        if (is_null($basePath))
+        {
+            $basePath = __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'HelloPHP2';
         }
         fwrite(STDOUT, 'basePath is ' . $basePath);
         $runner = new Self($basePath);
