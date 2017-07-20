@@ -17,5 +17,5 @@ array_map(function($row) {
 }, $data);
 
 print_r($_SERVER);
-print_r($_ENV);
+// print_r($_ENV);
 echo php_sapi_name();
