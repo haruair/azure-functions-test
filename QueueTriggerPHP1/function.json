@@ -1,5 +1,6 @@
 {
-  "entryPoint": "Haruair\\HelloWorld::Run",
+  "scriptFile": "..\\run.php",
+  "entryPoint": "Haruair\\HelloWorld\\QueueTriggerPHP1::Run",
   "bindings": [
     {
       "name": "inputMessage",

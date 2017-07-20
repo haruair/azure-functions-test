@@ -1,6 +1,6 @@
 {
   "scriptFile": "..\\run.php",
-  "entryPoint": "Haruair\\HelloWorld::Run",
+  "entryPoint": "Haruair\\HelloWorld\\HelloPHP2::Run",
   "bindings": [
     {
       "name": "inputMessage",
