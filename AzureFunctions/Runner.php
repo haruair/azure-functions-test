@@ -8,7 +8,7 @@ class Runner
 
     public static function Run(string $basePath = null)
     {
-        fwrite(STDOUT, 'call Run');
+        fwrite(STDOUT, 'call Run'.PHP_EOL);
         if (is_null($basePath))
         {
             $basePath = @$_SERVER['EXECUTION_CONTEXT_FUNCTIONDIRECTORY'];
@@ -18,21 +18,21 @@ class Runner
         {
             $basePath = __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'HelloPHP2';
         }
-        fwrite(STDOUT, 'basePath is ' . $basePath);
+        fwrite(STDOUT, 'basePath is ' . $basePath.PHP_EOL);
         $runner = new Self($basePath);
     }
 
     protected function __construct(string $basePath)
     {
         $this->basePath = $basePath;
-        fwrite(STDOUT, 'constructed');
-        fwrite(STDOUT, $this->getEntryPoint());
+        fwrite(STDOUT, 'constructed'.PHP_EOL);
+        fwrite(STDOUT, $this->getEntryPoint().PHP_EOL);
     }
 
     public function getEntryPoint()
     {
         $config = json_decode(file_get_contents($this->basePath . DIRECTORY_SEPARATOR . 'function.json'));
-        fwrite(STDOUT, 'get Entry Point');
+        fwrite(STDOUT, 'get Entry Point'.PHP_EOL);
         return $config->entryPoint;
     }
 }
