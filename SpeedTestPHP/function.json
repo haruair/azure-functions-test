@@ -1,3 +1,10 @@
 {
-  "disabled": false
+  "disabled": false,
+  "bindings": [
+    {
+      "name": "res",
+      "type": "http",
+      "direction": "out"
+    }
+  ]
 }

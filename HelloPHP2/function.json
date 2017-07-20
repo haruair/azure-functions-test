@@ -1,5 +1,12 @@
 {
   "scriptFile": "..\\run.php",
   "entryPoint": "Haruair\\HelloWorld\\HelloPHP2::Run",
+  "bindings": [
+    {
+      "name": "res",
+      "type": "http",
+      "direction": "out"
+    }
+  ],
   "disabled": false
 }
