@@ -14,12 +14,12 @@ class Runner
     protected function __construct(string $basePath)
     {
         $this->basePath = $basePath;
-        fwrite(STDOUT, $this->getEntryPoint);
+        fwrite(STDOUT, $this->getEntryPoint());
     }
 
     public function getEntryPoint()
     {
-        $config = json_decode(file_get_contents(__DIR__.'/function.json'));
+        $config = json_decode(file_get_contents($this->basePath.'/function.json'));
         return $config->entryPoint;
     }
 }
