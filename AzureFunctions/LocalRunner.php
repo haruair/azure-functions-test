@@ -44,6 +44,12 @@ class LocalRunner
             
             if (isset($routes[$route])) {
                 $runner = new Runner($routes[$route]);
+            } else {
+                return new React\Http\Response(
+                    404,
+                    array('Content-Type' => 'text/plain'),
+                    '404 Not Found'
+                );
             }
 
             $response = file_get_contents(getenv('$return'));
