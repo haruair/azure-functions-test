@@ -71,7 +71,7 @@ class Runner
         $builder = new ContainerBuilder();
         $container = $builder->build();
 
-        $container->set(ServerRequestInterface::class, \DI\object(ServerRequest::fromAzureFunctionsGlobals()));
+        $container->set(ServerRequestInterface::class, ServerRequest::fromAzureFunctionsGlobals());
 
         $this->container = $container;
         return $container;
